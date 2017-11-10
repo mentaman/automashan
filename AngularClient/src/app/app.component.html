@@ -1,0 +1,8 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="main">
+  <div *ngIf="loaded">
+    <div style="width: 150px; display: inline-block;" *ngFor="let l of list; let i = index">
+        <app-data [id]="l" (change)="changed(i, $event.id)"></app-data>
+    </div>
+  </div>
+</div>

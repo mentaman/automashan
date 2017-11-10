@@ -1,0 +1,8 @@
+<div *ngIf="items.length != 0">
+  <ng-select [allowClear]="true"
+             [items]="items"
+             (data)="change.emit($event)"
+             placeholder="תבחר">
+  </ng-select>
+</div>
+
