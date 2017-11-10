@@ -20,11 +20,11 @@ namespace ReflectionTry
         public string GetLine()
         {
             var str = "";
-            for(var i=1; i<this.datas.Count; i++)
+            for (var i = 1; i < this.datas.Count; i++)
             {
-                var prev = datas[i-1];
+                var prev = datas[i - 1];
                 var current = datas[i];
-                str += prev.GiveCode(i != this.datas.Count-1);
+                str += prev.GiveCode(i != this.datas.Count - 1);
             }
             return str;
         }

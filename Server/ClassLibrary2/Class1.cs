@@ -7,7 +7,7 @@ using ReflectionTry;
 
 namespace ClassLibrary2
 {
-    [TestUiCategory("דפים מוצלחים")]
+    [TestUICategory("דפים מוצלחים")]
     [TestUIName("דף הבית")]
     public class HomePage
     {
@@ -18,7 +18,7 @@ namespace ClassLibrary2
         }
     }
 
-    [TestUiCategory("דפים מוצלחים")]
+    [TestUICategory("דפים מוצלחים")]
     [TestUIName("צור קשר")]
     public class ContactPage
     {
@@ -29,14 +29,14 @@ namespace ClassLibrary2
         }
     }
 
-    [TestUiCategory("דפים מעפנים")]
+    [TestUICategory("דפים מעפנים")]
     [TestUIName("עמוד פרסומות")]
     public class AdPage
     {
         [TestUIName("כנס לפרסומת")]
-        public void ClickSomeButton()
+        public ContactPage ClickSomeButton()
         {
-
+            return new ContactPage();
         }
     }
 }

@@ -1,13 +1,15 @@
-﻿namespace ReflectionTry
+﻿using System;
+
+namespace ReflectionTry
 {
-    [System.AttributeUsage(System.AttributeTargets.Class | System.AttributeTargets.Method, AllowMultiple = false)]
-    public class TestUIName : System.Attribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    public class TestUIName : Attribute
     {
-        public string name;
+        public string Name;
 
         public TestUIName(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
     }
 }

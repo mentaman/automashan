@@ -1,13 +1,15 @@
-﻿namespace ReflectionTry
-{
-    [System.AttributeUsage(System.AttributeTargets.Class | System.AttributeTargets.Method, AllowMultiple = false)]
-    public class TestUiCategory : System.Attribute
-    {
-        public string name;
+﻿using System;
 
-        public TestUiCategory(string name)
+namespace ReflectionTry
+{
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    public class TestUICategory : Attribute
+    {
+        public string Name;
+
+        public TestUICategory(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
     }
 }

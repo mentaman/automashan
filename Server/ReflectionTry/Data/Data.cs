@@ -18,11 +18,7 @@ namespace ReflectionTry
         protected string GetNameByAttributes(Object[] attributes)
         {
             var nameattr = attributes.OfType<TestUIName>().FirstOrDefault();
-            if (nameattr == null)
-            {
-                return null;
-            }
-            return nameattr.name;
+            return (nameattr == null) ? null : nameattr.Name;
         }
     }
 }

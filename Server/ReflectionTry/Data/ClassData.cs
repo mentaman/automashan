@@ -13,7 +13,7 @@ namespace ReflectionTry
 
         public ClassData(bool isFirst, Type type)
         {
-            Id = isFirst+".class."+type.FullName;
+            Id = isFirst + ".class." + type.FullName;
             _isFirst = isFirst;
             _type = type;
         }
@@ -25,11 +25,7 @@ namespace ReflectionTry
             get
             {
                 var attrName = GetNameByAttributes(_type.GetCustomAttributes(true));
-                if (attrName != null)
-                {
-                    return attrName;
-                }
-                return _type.Name;
+                return (attrName != null) ? attrName : _type.Name;
             }
         } 
 
@@ -37,31 +33,24 @@ namespace ReflectionTry
         {
             List<FunctionData> list = new List<FunctionData>();
 
-            foreach (MethodInfo method in this._type.GetMethods())
+            foreach (MethodInfo method in _type.GetMethods())
             {
                 if (method.DeclaringType == typeof(object))
                     continue;
-                
-                var functionData = new FunctionData(method);
-                list.Add(functionData);
-                
-                
+                list.Add(new FunctionData(method));
             }
-            
             //TODO: add properties
-
             return list;
         }
 
         public override Data ResultType => this;
-
         public override bool CanContinue => true;
         public override bool CanEnd => false;
         public override string GiveCode(bool isEnd)
         {
             if (_isFirst)
             {
-                return "(new "+_type.FullName+"())a=.";
+                return "(new " + _type.FullName + "())a=.";
             }
             else if (isEnd)
             {

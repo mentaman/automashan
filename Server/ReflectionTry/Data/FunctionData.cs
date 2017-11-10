@@ -7,11 +7,11 @@ namespace ReflectionTry
     public class FunctionData : Data
     {
         private MethodInfo _methodInfo;
-        private Data _myresult;
+        private Data _myResult;
 
-        public override Data ResultType => _myresult;
+        public override Data ResultType => _myResult;
 
-        public override bool CanContinue => _myresult.CanContinue;
+        public override bool CanContinue => _myResult.CanContinue;
 
         public override bool CanEnd => true;
         public override string GiveCode(bool isEnd)
@@ -43,21 +43,21 @@ namespace ReflectionTry
 
         public FunctionData(MethodInfo methodInfo)
         {
-            Id = "Func."+methodInfo.Name + "." + methodInfo.DeclaringType;
+            Id = "Func." + methodInfo.Name + "." + methodInfo.DeclaringType;
             _methodInfo = methodInfo;
 
             var returnType = _methodInfo.ReturnType;
             if (returnType.IsPrimitive)
             {
-                _myresult = new PrimitiveData(returnType);
+                _myResult = new PrimitiveData(returnType);
             }
             else if (returnType.IsClass)
             {
-                _myresult = new ClassData(false, returnType);
+                _myResult = new ClassData(false, returnType);
             }
             else
             {
-                _myresult = new NoData();
+                _myResult = new NoData();
             }
         }
 
@@ -68,13 +68,7 @@ namespace ReflectionTry
                 throw new NotImplementedException();
             }
         }
-        
-       
 
-        public override IEnumerable<Data> GetContinue()
-        {
-            return _myresult.GetContinue();
-        }
-
+        public override IEnumerable<Data> GetContinue() => _myResult.GetContinue();
     }
 }

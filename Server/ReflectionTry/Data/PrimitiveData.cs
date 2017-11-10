@@ -19,11 +19,7 @@ namespace ReflectionTry
             get
             {
                 var attrName = GetNameByAttributes(_type.GetCustomAttributes(true));
-                if (attrName != null)
-                {
-                    return attrName;
-                }
-                return _type.Name;
+                return (attrName != null) ? attrName : _type.Name;
             }
         }
 

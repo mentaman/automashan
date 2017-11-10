@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReflectionTry
 {
@@ -36,12 +34,8 @@ namespace ReflectionTry
 
         private string GetCategory(Type type)
         {
-            var nameattr = type.GetCustomAttributes().OfType<TestUiCategory>().FirstOrDefault();
-            if (nameattr == null)
-            {
-                return "Default";
-            }
-            return nameattr.name;
+            var nameattr = type.GetCustomAttributes().OfType<TestUICategory>().FirstOrDefault();
+            return (nameattr == null) ? "Default" : nameattr.Name;
         }
 
         public override string Id { get; protected set; }
