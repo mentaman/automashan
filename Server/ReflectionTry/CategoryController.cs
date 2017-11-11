@@ -35,7 +35,7 @@ namespace ReflectionTry
         private string GetCategory(Type type)
         {
             var nameattr = type.GetCustomAttributes().OfType<TestUICategory>().FirstOrDefault();
-            return (nameattr == null) ? "Default" : nameattr.Name;
+            return (nameattr == null) ? "חסר קטגוריה" : nameattr.Name;
         }
 
         public override string Id { get; protected set; }

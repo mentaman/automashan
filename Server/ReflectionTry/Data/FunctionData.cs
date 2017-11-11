@@ -33,11 +33,7 @@ namespace ReflectionTry
             get
             {
                 var attrName = GetNameByAttributes(_methodInfo.GetCustomAttributes(true));
-                if (attrName != null)
-                {
-                    return attrName;
-                }
-                return _methodInfo.Name;
+                return (attrName != null) ? attrName : _methodInfo.Name;
             }
         }
 
