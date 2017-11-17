@@ -33,33 +33,29 @@ namespace ReflectionTry
         public override IEnumerable<Data> GetContinue()
         {
             List<FunctionData> functions = new List<FunctionData>();
-            foreach (MethodInfo method in _type.GetMethods())
-            {
-                if (method.DeclaringType == typeof(object))
-                    continue;
-                functions.Add(new FunctionData(method, null));
-            }
-            //TODO: add properties
 
-            GetExtensionMethodsRecursively(functions, _type.GetInterfaces());
+            AddMethodsToList(functions, _type.GetMethods(), null);
+            AddExtensionMethodsToList(functions, _type.GetInterfaces());
+            //TODO: add properties
 
             return functions;
         }
 
-        private void GetExtensionMethodsRecursively(List<FunctionData> functions, Type[] interfaces)
+        private void AddExtensionMethodsToList(List<FunctionData> functions, Type[] interfaces)
         {
-            if (interfaces.Length == 0)
-                return;
-
             foreach (Type inter in interfaces)
+            {                
+                AddMethodsToList(functions, GetExtensionMethods(inter), _type);
+            }
+        }
+
+        private void AddMethodsToList(List<FunctionData> functions, MethodInfo[] methods, Type methodsReturnType)
+        {
+            foreach (MethodInfo method in methods)
             {
-                //Add extension methods of each interface
-                foreach (MethodInfo method in GetExtensionMethods(inter))
-                {
-                    if (method.DeclaringType == typeof(object))
-                        continue;
-                    functions.Add(new FunctionData(method, _type));
-                }
+                if (method.DeclaringType == typeof(object))
+                    continue;
+                functions.Add(new FunctionData(method, methodsReturnType));
             }
         }
 
