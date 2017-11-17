@@ -44,8 +44,13 @@ namespace ReflectionTry
         private void AddExtensionMethodsToList(List<FunctionData> functions, Type[] interfaces)
         {
             foreach (Type inter in interfaces)
-            {                
-                AddMethodsToList(functions, GetExtensionMethods(inter), _type);
+            {
+                foreach (MethodInfo method in GetExtensionMethods(inter))
+                {
+                    if (method.DeclaringType == typeof(object))
+                        continue;
+                    functions.Add(new FunctionData(method, method.ReturnType == inter ? _type : null));
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using ReflectionTry;
+﻿using ClassLibrary2.Pages;
+using ReflectionTry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,13 @@ namespace ClassLibrary2.Elements
         {
             //do something...
             return page;
+        }
+
+        [TestUIName("לך לדף התחברות")]
+        public static LoginPage GoToHomePage(this IHasNavBar page)
+        {
+            //do something...
+            return new LoginPage();
         }
     }
 }
