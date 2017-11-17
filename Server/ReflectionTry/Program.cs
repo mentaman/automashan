@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClassLibrary2.Pages;
+using ClassLibrary2.Elements;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -42,6 +44,7 @@ namespace ReflectionTry
             {
                 Console.WriteLine(c.Name);
             }*/
+            HomePage homePage = new HomePage();
             Console.ReadLine();
         }
         static List<Type> GetClasses()

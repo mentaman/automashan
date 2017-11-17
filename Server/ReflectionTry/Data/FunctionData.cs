@@ -37,12 +37,12 @@ namespace ReflectionTry
             }
         }
 
-        public FunctionData(MethodInfo methodInfo)
+        public FunctionData(MethodInfo methodInfo, Type extendedType)
         {
             Id = "Func." + methodInfo.Name + "." + methodInfo.DeclaringType;
             _methodInfo = methodInfo;
 
-            var returnType = _methodInfo.ReturnType;
+            var returnType = (extendedType != null) ? extendedType : _methodInfo.ReturnType;
             if (returnType.IsPrimitive)
             {
                 _myResult = new PrimitiveData(returnType);

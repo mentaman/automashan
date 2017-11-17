@@ -26,7 +26,7 @@ namespace ClassLibrary2.Elements
     public static class NavBarExtensions
     {
         [TestUIName("בר ניווט")]
-        public static IHasNavBar NavBar(this IHasNavBar page)
+        public static IHasNavBar GoToNavBar(this IHasNavBar page)
         {
             //do something...
             return page;

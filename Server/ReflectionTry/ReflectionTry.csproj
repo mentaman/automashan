@@ -62,6 +62,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary2\ClassLibrary2.csproj">
+      <Project>{e8bb6953-a629-42d8-8de9-82f3d08ea585}</Project>
+      <Name>ClassLibrary2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectAttributes\ProjectAttributes.csproj">
       <Project>{347347ac-3a25-4b75-b688-5939ef9ed31c}</Project>
       <Name>ProjectAttributes</Name>

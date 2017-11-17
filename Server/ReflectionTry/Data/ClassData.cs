@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace ReflectionTry
@@ -31,16 +32,53 @@ namespace ReflectionTry
 
         public override IEnumerable<Data> GetContinue()
         {
-            List<FunctionData> list = new List<FunctionData>();
-
+            List<FunctionData> functions = new List<FunctionData>();
             foreach (MethodInfo method in _type.GetMethods())
             {
                 if (method.DeclaringType == typeof(object))
                     continue;
-                list.Add(new FunctionData(method));
+                functions.Add(new FunctionData(method, null));
             }
             //TODO: add properties
-            return list;
+
+            GetExtensionMethodsRecursively(functions, _type.GetInterfaces());
+
+            return functions;
+        }
+
+        private void GetExtensionMethodsRecursively(List<FunctionData> functions, Type[] interfaces)
+        {
+            if (interfaces.Length == 0)
+                return;
+
+            foreach (Type inter in interfaces)
+            {
+                //Add extension methods of each interface
+                foreach (MethodInfo method in GetExtensionMethods(inter))
+                {
+                    if (method.DeclaringType == typeof(object))
+                        continue;
+                    functions.Add(new FunctionData(method, _type));
+                }
+            }
+        }
+
+        private MethodInfo[] GetExtensionMethods(Type t)
+        {
+            List<Type> AssTypes = new List<Type>();
+
+            foreach (Assembly item in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                AssTypes.AddRange(item.GetTypes());
+            }
+
+            var query = from type in AssTypes
+                        where type.IsSealed && !type.IsGenericType && !type.IsNested
+                        from method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                        where method.IsDefined(typeof(ExtensionAttribute), false)
+                        where method.GetParameters()[0].ParameterType == t
+                        select method;
+            return query.ToArray<MethodInfo>();
         }
 
         public override Data ResultType => this;
