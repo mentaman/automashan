@@ -53,7 +53,9 @@
     <Compile Include="Data\PrimitiveData.cs" />
     <Compile Include="EncodingUtils.cs" />
     <Compile Include="IdController.cs" />
+    <Compile Include="Interfaces\IHasParameters.cs" />
     <Compile Include="LineOfCode.cs" />
+    <Compile Include="ParameterIdController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializeableData.cs" />

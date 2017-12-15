@@ -19,7 +19,7 @@ namespace ClassLibrary2.Elements
     public static class SearchBarExtensions
     {
         [TestUIName("חיפוש")]
-        public static IHasSearchBar Search(this IHasSearchBar page)
+        public static IHasSearchBar Search(this IHasSearchBar page, string text)
         {
             //do something...
             return page;

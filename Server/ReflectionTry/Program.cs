@@ -45,6 +45,7 @@ namespace ReflectionTry
                 Console.WriteLine(c.Name);
             }*/
             HomePage homePage = new HomePage();
+
             Console.ReadLine();
         }
         static List<Type> GetClasses()

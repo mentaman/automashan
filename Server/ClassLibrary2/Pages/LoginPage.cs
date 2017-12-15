@@ -12,7 +12,7 @@ namespace ClassLibrary2.Pages
     public class LoginPage
     {
         [TestUIName("התחבר")]
-        public HomePage Login()
+        public HomePage Login(string username)
         {
             //do something...
             return new HomePage();

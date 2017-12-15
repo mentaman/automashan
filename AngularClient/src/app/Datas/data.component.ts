@@ -20,7 +20,7 @@ export class DataComponent implements OnInit {
       for(const id of data.NextIds)
       {
         const current = this.dataService.datas[id];
-        this.items.push({id: current.Id, text: current.Name});
+        this.items.push({id: current.Id, text: current.Name+current.ParameterTypes[0]});
       }
     }
 

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ReflectionTry.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace ReflectionTry
 {
-    public class FunctionData : Data
+    public class FunctionData : Data, IHasParameters
     {
         private MethodInfo _methodInfo;
         private Data _myResult;
@@ -37,6 +38,18 @@ namespace ReflectionTry
             }
         }
 
+        public IEnumerable<ParameterInfo> Parameters
+        {
+            get
+            {
+                return _methodInfo.GetParameters();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public FunctionData(MethodInfo methodInfo, Type extendedType)
         {
             Id = "Func." + methodInfo.Name + "." + methodInfo.DeclaringType;
@@ -56,15 +69,6 @@ namespace ReflectionTry
                 _myResult = new NoData();
             }
         }
-
-        public IEnumerable<ParameterData> Parameters
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         public override IEnumerable<Data> GetContinue() => _myResult.GetContinue();
     }
 }
